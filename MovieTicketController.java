@@ -33,3 +33,28 @@ public class MovieTicketController {
         return createShowtimeService.createShowtime(request.getMovieId(), request.getTheaterId(), request.getStartTime(), request.getEndTime(), request.getSeats());
     }
 }
+
+ class CreateMovieRequest {
+    private String title;
+    private String genre;
+    private String plot;
+    private String cast;
+    private double rating;
+    private int duration;
+    private String posterUrl;
+
+    // constructors, getters, and setters
+}
+
+ class BookMovieTicketRequest {
+    private String movieId;
+    private String theaterId;
+    private String showtime;
+    private int numTickets;
+    private List<Seat> seats;
+    private PaymentDetails paymentDetails;
+
+    // constructors, getters, and setters
+}
+
+
