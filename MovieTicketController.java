@@ -14,22 +14,30 @@ public class MovieTicketController {
     }
 
     @PostMapping("/book")
-    public Ticket bookMovieTicket(@RequestBody BookMovieTicketRequest request) throws TicketBookingException {
+    public Ticket bookMovieTicket(@RequestHeader("Authorization") String authorization, @RequestBody BookMovieTicketRequest request) throws TicketBookingException, UnauthorizedException {
+        // validate access token
+        User user = tokenService.verifyAccessToken(authorization);
+        if (user == null) {
+            throw new UnauthorizedException("Invalid access token");
+        }
+
+        // book ticket
+        request.getPaymentDetails().setUserId(user.getId());
         return bookMovieTicketService.bookTicket(request.getMovieId(), request.getTheaterId(), request.getShowtime(), request.getNumTickets(), request.getSeats(), request.getPaymentDetails());
     }
 
     @PostMapping("/theaters/create")
-    public Theater createTheater(@RequestBody CreateTheaterRequest request) throws TheaterCreationException {
+    public Theater createTheater(@RequestHeader("Authorization") String authorization, @RequestBody CreateTheaterRequest request) throws TheaterCreationException {
         return createTheaterService.createTheater(request.getName(), request.getLocation(), request.getNumRows(), request.getNumColumns());
     }
 
     @PostMapping("/movies/create")
-    public Movie createMovie(@RequestBody CreateMovieRequest request) throws MovieCreationException {
+    public Movie createMovie(@RequestHeader("Authorization") String authorization, @RequestBody CreateMovieRequest request) throws MovieCreationException {
         return createMovieService.createMovie(request.getTitle(), request.getGenre(), request.getPlot(), request.getCast(), request.getRating(), request.getDuration(), request.getPosterUrl());
     }
 
     @PostMapping("/showtimes/create")
-    public Showtime createShowtime(@RequestBody CreateShowtimeRequest request) throws ShowtimeCreationException {
+    public Showtime createShowtime(@RequestHeader("Authorization") String authorization, @RequestBody CreateShowtimeRequest request) throws ShowtimeCreationException {
         return createShowtimeService.createShowtime(request.getMovieId(), request.getTheaterId(), request.getStartTime(), request.getEndTime(), request.getSeats());
     }
 }
