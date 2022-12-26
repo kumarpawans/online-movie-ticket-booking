@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="online-movie-ticket-booking:ear exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/online_movie_ticket_booking_ear_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="online-movie-ticket-booking/javaeeApplication/javaEEApplication" />
+    </root>
+  </artifact>
+</component>
