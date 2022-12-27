@@ -11,7 +11,7 @@ Here are some example functional and non-functional requirements for an online m
 		1. Users should be able to search for movies by title, genre, or theater location.
 		2. Users should be able to view movie details, including ratings, cast, and plot summary.
 		3. Users should be able to select and purchase tickets for a movie, specifying the number of tickets and the desired seating.
-	  4. Users should be able to view their ticket purchase history and manage their account preferences.
+	    4. Users should be able to view their ticket purchase history and manage their account preferences.
 		5. The system should be able to accept various payment methods, including credit cards and online payment services.
 		6. The system should be able to integrate with point-of-sale systems and ticketing systems at movie theaters.
   

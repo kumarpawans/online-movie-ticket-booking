@@ -2,7 +2,7 @@ package com.psp.test.controller;
 
 import com.psp.test.model.BookMovieTicketRequest;
 import com.psp.test.model.User;
-import com.psp.test.model.service.BookMovieTicketService;
+import com.psp.test.service.BookMovieTicketService;
 import com.psp.test.model.Ticket;
 
 @RestController

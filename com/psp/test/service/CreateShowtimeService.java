@@ -1,4 +1,4 @@
-package com.psp.test.model.service;
+package com.psp.test.service;
 
 import com.psp.test.database.MovieDatabase;
 import com.psp.test.database.ShowtimeDatabase;

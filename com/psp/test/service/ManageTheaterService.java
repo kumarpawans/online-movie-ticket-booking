@@ -1,4 +1,4 @@
-package com.psp.test.model.service;
+package com.psp.test.service;
 
 import com.psp.test.database.TheaterCreationException;
 import com.psp.test.database.TheaterDatabase;

@@ -1,7 +1,6 @@
-package com.psp.test.model.service;
+package com.psp.test.service;
 
 import com.psp.test.database.MovieDatabase;
-import com.psp.test.exception.MovieCreationException;
 import com.psp.test.model.Movie;
 
 public class CreateMovieService {
