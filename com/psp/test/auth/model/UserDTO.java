@@ -12,8 +12,6 @@ public class UserDTO {
     private final String email;
     @NonNull
     private final String name;
-    @NonNull
-    private final String avatarHash;
-    private final Boolean isFollowedByMe;
+
 
 }
