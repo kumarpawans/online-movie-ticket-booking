@@ -1,6 +1,7 @@
 # Online-movie-ticket-booking
 
 Here are some example functional and non-functional requirements for an online movie ticket booking system:
+## For B2B use case authenticate user with header value like - Tenent id or at the time of user creation one id can be used
 
 # Functional requirements: 
 

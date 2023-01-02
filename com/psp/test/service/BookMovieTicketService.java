@@ -4,12 +4,14 @@ import com.psp.test.database.MovieDatabase;
 import com.psp.test.database.TheaterDatabase;
 import com.psp.test.database.TicketDatabase;
 import com.psp.test.model.*;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class BookMovieTicketService {
     private MovieDatabase movieDatabase;
     private TheaterDatabase theaterDatabase;

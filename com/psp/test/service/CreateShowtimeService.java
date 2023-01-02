@@ -6,7 +6,9 @@ import com.psp.test.database.TheaterDatabase;
 import com.psp.test.model.Movie;
 import com.psp.test.model.Showtime;
 import com.psp.test.model.Theater;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateShowtimeService {
     private MovieDatabase movieDatabase;
     private TheaterDatabase theaterDatabase;

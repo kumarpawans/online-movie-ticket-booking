@@ -2,6 +2,7 @@ package com.psp.test.controller;
 
 import com.psp.test.model.*;
 import com.psp.test.service.*;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,15 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/tickets")
 public class MovieTicketController {
-    @Autowired
     private BookMovieTicketService bookMovieTicketService;
-    @Autowired
     private CreateTheaterService createTheaterService;
-    @Autowired
     private CreateMovieService createMovieService;
-    @Autowired
     private CreateShowtimeService createShowtimeService;
 
+   @Autowired
     public MovieTicketController(BookMovieTicketService bookMovieTicketService, CreateTheaterService createTheaterService, CreateMovieService createMovieService, CreateShowtimeService createShowtimeService) {
         this.bookMovieTicketService = bookMovieTicketService;
         this.createTheaterService = createTheaterService;

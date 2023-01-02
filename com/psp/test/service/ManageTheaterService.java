@@ -5,9 +5,10 @@ import com.psp.test.database.TheaterDatabase;
 import com.psp.test.database.TicketDatabase;
 import com.psp.test.model.Theater;
 import com.psp.test.model.Ticket;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ManageTheaterService {
     private TheaterDatabase theaterDatabase;
     private TicketDatabase ticketDatabase;

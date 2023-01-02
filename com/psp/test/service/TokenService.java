@@ -1,17 +1,17 @@
-import java.time.Instant;
-import java.util.Base64;
-import java.util.Date;
-
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
+package com.psp.test.service;
 
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Service;
 
+import java.security.Key;
+import java.time.Instant;
+import java.util.Date;
+
+@Service
 public class TokenService {
     private static final String ISSUER = "Example App";
     private static final int TOKEN_DURATION_MINUTES = 30;
-    private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private static Key SECRET_KEY = null;
 
     public static String generateToken(String subject) {
         Instant now = Instant.now();
@@ -22,7 +22,7 @@ public class TokenService {
                 .setIssuer(ISSUER)
                 .setIssuedAt(Date.from(now))
                 .setExpiration(expirationTime)
-                .signWith(SECRET_KEY)
+                //.signWith(SECRET_KEY) // generate key to sign
                 .compact();
     }
 

@@ -4,6 +4,12 @@ import com.psp.test.model.BookMovieTicketRequest;
 import com.psp.test.model.User;
 import com.psp.test.service.BookMovieTicketService;
 import com.psp.test.model.Ticket;
+import org.apache.catalina.UserDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.concurrent.Callable;
 
 @RestController
 @RequestMapping("/tickets")
@@ -12,24 +18,24 @@ public class MovieTicketControllerWithCircuitBrakerPattern {
     private TokenService tokenService;
     private CircuitBreaker circuitBreaker;
 
-    public MovieTicketController(BookMovieTicketService bookMovieTicketService, TokenService tokenService, CircuitBreaker circuitBreaker) {
+    public MovieTicketControllerWithCircuitBrakerPattern(BookMovieTicketService bookMovieTicketService, TokenService tokenService, CircuitBreaker circuitBreaker) {
         this.bookMovieTicketService = bookMovieTicketService;
         this.tokenService = tokenService;
         this.circuitBreaker = circuitBreaker;
     }
 
     @PostMapping("/book")
-    public Ticket bookMovieTicket(@RequestHeader("Authorization") String authorization, @RequestBody BookMovieTicketRequest request) throws TicketBookingException, UnauthorizedException {
+    public Ticket bookMovieTicket(@RequestHeader("Authorization") String authorization, @RequestBody BookMovieTicketRequest request) throws Exception {
         // validate access token
         User user = tokenService.verifyAccessToken(authorization);
         if (user == null) {
-            throw new UnauthorizedException("Invalid access token");
+            throw new Exception("Invalid access token");
         }
 
         // wrap booking operation in circuit breaker
         return circuitBreaker.execute(() -> {
             // book ticket
-            request.getPaymentDetails().setUserId(user.getId());
+            request.getPaymentDetails().setUser(user);
             return bookMovieTicketService.bookTicket(request.getMovieId(), request.getTheaterId(), request.getShowtime(), request.getNumTickets(), request.getSeats(), request.getPaymentDetails());
         });
     }
@@ -55,7 +61,7 @@ class CircuitBreaker {
     public <T> T execute(Callable<T> operation) throws Exception {
         // check if circuit is open
         if (failureCount >= threshold && System.currentTimeMillis() - lastFailure < timeout) {
-            throw new CircuitBreakerOpenException("Circuit breaker is open");
+            throw new Exception("Circuit breaker is open");
         }
 
         try {
@@ -71,12 +77,13 @@ class CircuitBreaker {
         }
     }
 }
-
+@Component
 class TokenService {
     private static final String TOKEN_PREFIX = "Bearer ";
-    private UserDatabase userDatabase;
+    @Autowired
+    private com.psp.test.database.UserDatabase userDatabase;
 
-    public TokenService(UserDatabase userDatabase) {
+    public TokenService(com.psp.test.database.UserDatabase userDatabase) {
         this.userDatabase = userDatabase;
     }
 

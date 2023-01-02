@@ -2,7 +2,9 @@ package com.psp.test.service;
 
 import com.psp.test.database.MovieDatabase;
 import com.psp.test.model.Movie;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateMovieService {
     private MovieDatabase movieDatabase;
 

@@ -1,0 +1,91 @@
+@startuml
+class com.psp.test.model.Showtime {
+- String movieId
+- String theaterId
+- Date startTime
+- Date endTime
+- List<Seat> seats
+- String showtime
+}
+class com.psp.test.model.Ticket {
+- String id
+- String movieId
+- String theaterId
+- String showtime
+- List<Seat> seats
+- String userId
+- double price
+- Date purchaseDate
+- boolean refunded
+}
+interface com.psp.test.model.ICreateMovieRequest {
+}
+class com.psp.test.model.Theater {
+- String id
+- String name
+- String seat
+- String location
+- int numRows
+- int numColumns
+}
+class com.psp.test.model.Admin {
+- String username
+- String password
+- String name
+- String email
+}
+class com.psp.test.model.PaymentDetails {
+- String paymentMethod
+- double paymentAmount
+- String cardHolderName
+- String cardNumber
+- String expirationDate
+- String cvv
+- User user
+}
+class com.psp.test.model.BookMovieTicketRequest {
+- String movieId
+- String theaterId
+- String showtime
+- int numTickets
+- List<Seat> seats
+- PaymentDetails paymentDetails
+}
+class com.psp.test.model.Seat {
+- String theaterId
+- int row
+- int column
+- boolean reserved
+}
+class com.psp.test.model.CreateMovieRequest {
+- String title
+- String genre
+- String plot
+- String cast
+- double rating
+- int duration
+- String posterUrl
+}
+class com.psp.test.model.User {
+- String id
+- String username
+- String password
+- String name
+- String email
+- String phone
+}
+class com.psp.test.model.Movie {
+- String id
+- String title
+- String genre
+- String plot
+- String cast
+- double rating
+- int duration
+- String posterUrl
+- double ticketPrice
+}
+
+
+com.psp.test.model.ICreateMovieRequest <|.. com.psp.test.model.CreateMovieRequest
+@enduml

@@ -3,7 +3,9 @@ package com.psp.test.service;
 import com.psp.test.database.TheaterCreationException;
 import com.psp.test.database.TheaterDatabase;
 import com.psp.test.model.Theater;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateTheaterService {
     private TheaterDatabase theaterDatabase;
 

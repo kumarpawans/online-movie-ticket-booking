@@ -1,7 +1,9 @@
 package com.psp.test.service;
 
 import com.psp.test.model.PaymentDetails;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PaymentService {
     public boolean processPayment(PaymentDetails paymentDetails) {
         // validate payment details
